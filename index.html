@@ -1,6 +1,10 @@
+<script src=utility.js></script>
 <script src=CT_Modeler.js></script>
 <script src=CT_Modeler_Expanded.js></script>
 <script>
+var isPhone = function(){ return false; };
+CT.LINE_BUF_SIZE = 200;
+var path;
 
 function init() {
    var sin = Math.sin, cos = Math.cos, PI = Math.PI;
@@ -11,10 +15,10 @@ function init() {
    window.obj = new CT.Node().scale(.13);
    scene.add(obj);
 
-   obj.addChild(new CT.Cube());
-   obj.getChild(0).setTexture('images/xy.png');
+   // obj.addChild(new CT.Cube());
+   // obj.getChild(0).setTexture('images/xy.png');
 
-   obj.addChild(new CT.Cylinder(8));
+   // obj.addChild(new CT.Cylinder(8));
 
    // obj.addChild(new CT.Extruded(16,100,
    //    function(u,v){ v=.15+.06*cos(6*PI*v); u*=2*PI; return [v*cos(u),v*sin(u)] },          // PROFILE
@@ -38,11 +42,12 @@ function init() {
    //                     .setTexture('images/This_is_not_a_bagel.jpg')
    //                     .setNormalMap('images/normal_map_2.jpg');
 
-   var path = new CT.Path();
-   path.setPath([ 1, 1, 1, -1, -1, -1 ]);
-   // path.setLineWidth(100, 100);
-
-   // obj.addChild(path);
+   path = new CT.Path();
+   path.setPath([ 1, 1, 1, 1, -1, -1, -1, -1 ]);
+   path.setLineWidth(1, 1);
+   path.setRGBA([1, 0, 0, 1]);
+   path.setFill(true);
+   obj.addChild(path);
 
    // obj.getChild(1).setFragmentShader(
    //    ['precision highp float;'
@@ -66,6 +71,7 @@ setTimeout(function() {
                              window.time = (new Date()).getTime() / 1000;
                              update();
                           }, 16);
+              path.drawPath();
            }, 100);
 
 </script>
