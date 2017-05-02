@@ -58,4 +58,11 @@ var Modeler = new (function(){
 		}
 		rotationSpeed = array;
 	}
+
+	this.setRotation = function(array){
+		while(array.length < 3){
+			array.push(0);
+		}
+		obj.identity().rotateX(array[0]).rotateY(array[1]).rotateZ(array[2]);
+	}
 })();
