@@ -1,6 +1,8 @@
 
 /////// CHALKTALK MODELER FOR HTML5 ///////////////////////////////////////////////////////////////
 
+var isPhone = function(){ return false; };
+
 if (! window.CT) CT = { };
 CT.REVISION = "0";
 
