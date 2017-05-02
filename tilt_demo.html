@@ -1,0 +1,46 @@
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/utility.js"></script>
+    <script src="/CT_Modeler_Expanded.js"></script>
+    <script src="/modeler.js"></script>
+    <script src="/perlin.js"></script>
+    <script>
+        var width = 10;
+        var perlinScale = 2;
+        var baseRotation = [ Math.PI / 2, 0, 0 ];
+
+        function handleOrientation(event) {
+            var alpha = event.alpha * Math.PI / 180;
+            var beta = event.beta * Math.PI / 180;
+            var gamma = event.gamma * Math.PI / 180;
+            Modeler.setRotation([ beta - baseRotation[0], gamma - baseRotation[1], alpha - baseRotation[2] ]);
+        }
+
+        if (window.DeviceOrientationEvent) {
+            console.log("orientation supported");
+            window.addEventListener("deviceorientation", handleOrientation);
+        } else {
+            console.log("Sorry, your browser doesn't support Device Orientation");
+        }
+
+        $(document).ready(function(){
+            $("#canvas_3d").attr("width", $(document.body).width());
+            $("#canvas_3d").attr("height", $(document.body).height());
+
+            Modeler.init("canvas_3d");
+            Modeler.scale(0.5);
+
+            for (var x = 0; x < width; x++) {
+                for (var y = 0; y < width; y++) {
+                    var value = Math.abs(noise.perlin2(perlinScale * x / width, perlinScale * y / width));
+                    var color = [ 0, value, 0 ];
+                    Modeler.addPoint((x / width) - 0.5, (y / width) - 0.5, value, color);
+                }
+            }
+            console.log("modeler started");
+        });
+    </script>
+</head>
+<body>
+    <canvas id="canvas_3d" width=1600 height=768></canvas>
+</body>

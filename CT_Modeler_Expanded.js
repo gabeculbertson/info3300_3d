@@ -10,24 +10,24 @@ CT.def = function(a, b) { return a !== undefined ? a : b !== undefined ? b : 0; 
 CT.fovToFL = function(fov) { return 1 / Math.tan(fov / 2); }
 CT.time = 0;
 CT.imu = { compass:null, alpha:null, beta:null, gamma:null, ax:null, ay:null, az:null };
-if (window.DeviceOrientationEvent)
-   window.addEventListener('deviceorientation', function(event) {
-      CT.imu.alpha = event.alpha;  // COMPASS DIRECTION IN DEGREES
-      CT.imu.beta  = event.beta;   // TILT FRONT-2-BACK IN DEGREES
-      CT.imu.gamma = event.gamma;  // TILT LEFT-2-RIGHT IN DEGREES
+// if (window.DeviceOrientationEvent)
+//    window.addEventListener('deviceorientation', function(event) {
+//       CT.imu.alpha = event.alpha;  // COMPASS DIRECTION IN DEGREES
+//       CT.imu.beta  = event.beta;   // TILT FRONT-2-BACK IN DEGREES
+//       CT.imu.gamma = event.gamma;  // TILT LEFT-2-RIGHT IN DEGREES
 
-      if (CT.imu.compass = event.webkitCompassHeading) // IF COMPASS HEADING IS SUPPORTED,
-         CT.imu.alpha = CT.imu.compass;                // THEN USE IT.
+//       if (CT.imu.compass = event.webkitCompassHeading) // IF COMPASS HEADING IS SUPPORTED,
+//          CT.imu.alpha = CT.imu.compass;                // THEN USE IT.
 
-      if (CT.imu.callback)
-         CT.imu.callback();
-   });
-if (window.DeviceMotionEvent)
-   window.addEventListener('devicemotion', function(event) {
-      CT.imu.ax = event.acceleration.x;
-      CT.imu.ay = event.acceleration.y;
-      CT.imu.az = event.acceleration.z;
-   });
+//       if (CT.imu.callback)
+//          CT.imu.callback();
+//    });
+// if (window.DeviceMotionEvent)
+//    window.addEventListener('devicemotion', function(event) {
+//       CT.imu.ax = event.acceleration.x;
+//       CT.imu.ay = event.acceleration.y;
+//       CT.imu.az = event.acceleration.z;
+//    });
 
 
 CT.cross     = function(a, b) { return [ a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0] ]; }
