@@ -1,9 +1,9 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="utility.js"></script>
-    <script src="CT_Modeler_Expanded.js"></script>
-    <script src="/modeler.js"></script>
-    <script src="/normal.js"></script>
+    <script src="/js/utility.js"></script>
+    <script src="/js/CT_Modeler_Expanded.js"></script>
+    <script src="/js/modeler.js"></script>
+    <script src="/js/normal.js"></script>
     <script>
         var totalPoints = 500;
         var xStd = 1;
@@ -17,7 +17,7 @@
             Modeler.init("canvas_3d");
             Modeler.scale(0.2);
             Modeler.setRotationSpeed([ 0, 1, 0 ]);
-            
+
             for(var i = 0; i < totalPoints; i++){
                 Modeler.addPoint(xStd * normal(), yStd * normal(), zStd * normal());
             }
